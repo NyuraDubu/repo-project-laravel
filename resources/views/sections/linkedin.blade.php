@@ -25,7 +25,6 @@
             ];
         @endphp
 
-        {{-- Mobile: carrousel horizontal / Desktop: grid --}}
         <div class="-mx-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:mx-0 sm:overflow-visible my-8">
             <div class="px-4 flex gap-6 sm:px-0 sm:grid sm:grid-cols-3 sm:gap-10 lg:gap-12">
                 @foreach($posts as $post)
@@ -36,19 +35,13 @@
                                 alt="Post LinkedIn {{ $post['title'] }}"
                                 class="w-full aspect-square object-cover rounded-2xl shadow"
                             />
-
                             <div class="mt-6 sm:mt-8 flex flex-col grow">
-                                <!-- Titre: max 2 lignes + un peu plus d’espace réservé -->
                                 <h3 class="text-[24px] font-semibold leading-snug line-clamp-2 min-h-[3.75rem] sm:min-h-[4rem]">
                                     {{ $post['title'] }}
                                 </h3>
-
-                                <!-- Extrait: marge + interligne plus confort -->
                                 <p class="mt-3 sm:mt-4 text-[14px] leading-4 text-[#848484] line-clamp-3 min-h-[4.25rem]">
                                     {{ $post['description'] }}
                                 </p>
-
-                                <!-- CTA: plus d’air en haut, compact et à gauche en desktop -->
                                 <a href="{{ $post['link'] }}"
                                    class="mt-auto my-8 sm:mt-10 inline-flex
                                           h-10 w-full items-center justify-center rounded-md

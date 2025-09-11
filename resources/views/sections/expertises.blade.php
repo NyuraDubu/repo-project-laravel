@@ -56,7 +56,6 @@
             </div>
         </div>
 
-        {{-- Grid desktop (2 colonnes, cartes larges) --}}
         <div class="hidden sm:grid mt-12 gap-10 sm:grid-cols-2">
             @foreach($expertises as $title => $items)
                 <article class="rounded-2xl bg-[#D9D9D9] p-5 lg:p-6">
