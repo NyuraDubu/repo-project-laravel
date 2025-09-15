@@ -1,12 +1,10 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-<link rel="stylesheet" href="https://use.typekit.net/wwx2vqx.css">
-
 <!doctype html>
 <html lang="{{ str_replace('_','-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', config('app.name', 'Site'))</title>
+        <title>@yield('title', config('app.name', 'Site'))</title>
+        <link rel="stylesheet" href="https://use.typekit.net/wwx2vqx.css">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="min-h-dvh text-slate-900 antialiased">

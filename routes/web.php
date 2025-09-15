@@ -11,3 +11,7 @@ Route::get('/lang/{locale}', function (string $locale) {
     session(['locale' => $locale]);
     return back();
 })->name('lang.switch');
+
+Route::get('/work', function () {
+    return view('pages.work');
+})->name('work');

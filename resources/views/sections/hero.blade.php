@@ -25,10 +25,10 @@
 
             <div class="my-6">
                 <a href="#work"
-                     class="mt-auto my-8 sm:mt-10 inline-flex h-10 w-full items-center justify-center rounded-md
-                                    bg-black text-white text-[15px] font-medium tracking-wide
-                                    sm:h-9 sm:w-auto sm:px-8 sm:text-[14px] sm:rounded-md sm:self-center">
-                    {{ __('hero.cta') }} <span class="ml-2">›</span>
+                     class="mt-auto my-8 sm:mt-10 inline-flex h-10 w-full items-center justify-center rounded-sm
+                                    bg-black text-white text-[14px] font-semibold tracking-wide
+                                    sm:h-9 sm:w-auto sm:px-8 sm:text-[14px] sm:rounded-sm sm:self-center">
+                    {{ __('hero.cta') }} <span class="ml-2 ">›</span>
                 </a>
             </div>
 

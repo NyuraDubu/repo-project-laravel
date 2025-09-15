@@ -14,8 +14,14 @@
         <div id="workSlider" class="-mx-4 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory sm:hidden my-6">
             <div class="px-4 flex gap-4">
                 @foreach($works as $w)
+                    @php
+                        $colorImg = preg_replace('/\.png$/', '-color.png', $w['img'] ?? '');
+                    @endphp
                     <a class="shrink-0 snap-center w-[calc(100vw-2rem)] max-w-[360px] relative rounded-2xl overflow-hidden group my-6">
-                        <img src="{{ $w['img'] }}" alt="" class="w-full aspect-[16/16] object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                        <div class="relative w-full">
+                            <img src="{{ $w['img'] }}" alt="{{ $w['title'] ?? '' }}" class="w-full aspect-[16/16] object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.02]" />
+                            <img src="{{ $colorImg }}" alt="{{ $w['title'] ?? '' }}" class="absolute inset-0 w-full h-full object-cover opacity-0 motion-safe:transition-opacity motion-safe:duration-300 group-hover:opacity-100" onerror="this.style.display='none'" />
+                        </div>
                     </a>
                 @endforeach
             </div>
@@ -25,16 +31,18 @@
             @foreach($works as $w)
                 @php
                     $tall = in_array($w['title'] ?? '', ['Kappa', 'SF Paris', 'Stade Français Paris', 'Stade Francais Paris']);
+                    $colorImg = preg_replace('/\.png$/', '-color.png', $w['img'] ?? '');
                 @endphp
 
                 <a class="group relative overflow-hidden rounded-2xl {{ $tall ? 'sm:row-span-2 lg:row-span-2' : 'sm:row-span-1 lg:row-span-1' }}">
-                    <img src="{{ $w['img'] }}" alt="{{ $w['title'] ?? '' }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                    <img src="{{ $w['img'] }}" alt="{{ $w['title'] ?? '' }}" class="w-full h-full object-cover motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-[1.02]" />
+                    <img src="{{ $colorImg }}" alt="{{ $w['title'] ?? '' }}" class="absolute inset-0 w-full h-full object-cover opacity-0 motion-safe:transition-opacity motion-safe:duration-300 group-hover:opacity-100" onerror="this.style.display='none'" />
                 </a>
             @endforeach
         </div>
 
         <div class="mt-8 text-center hidden sm:block">
-            <a class="mt-auto my-8 sm:mt-10 inline-flex h-10 w-full items-center justify-center rounded-md bg-black text-white text-[15px] font-medium tracking-wide sm:h-9 sm:w-auto sm:px-8 sm:text-[14px] sm:rounded-md sm:self-center">
+            <a class="mt-auto my-8 sm:mt-10 inline-flex h-10 w-full items-center justify-center rounded-sm bg-black text-white text-[14px] font-semibold tracking-wide sm:h-9 sm:w-auto sm:px-8 sm:text-[14px] sm:rounded-sm sm:self-center">
                 {{ __('common.see_more') }} <span class="ml-2">›</span>
             </a>
         </div>
