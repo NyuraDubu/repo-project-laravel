@@ -10,34 +10,52 @@
         </div>
 
         <nav class="hidden md:flex items-center gap-8">
-            <a href="{{ url('/') }}" class="text-xs tracking-wide text-[#B2B2B2] font-bold hover:text-black transition">{{ __('nav.home') }}</a>
-            <a href="{{ route('work') }}" class="text-xs tracking-wide text-[#B2B2B2] font-bold hover:text-black transition">{{ __('nav.work') }}</a>
+            @php
+                $active   = 'text-black';
+                $inactive = 'text-[#B2B2B2] hover:text-black';
+                $locale   = app()->getLocale();
+                $isHome   = request()->is('/');
+                $isWork   = request()->routeIs('work*');
+            @endphp
 
-            @php($locale = app()->getLocale())
-            <div class="ml-4 flex items-center gap-3 select-none">
-            <a href="{{ route('lang.switch', ['locale' => 'fr']) }}"
-                class="text-xs font-bold {{ $locale==='fr' ? 'text-black' : 'text-[#BDBDBD]' }}">
-                {{ __('nav.fr') }}
+            <a href="{{ url('/') }}"
+            class="inline-flex items-center text-xs tracking-wide font-bold transition {{ $isHome ? $active : $inactive }}"
+            @if($isHome) aria-current="page" @endif>
+                {{ __('nav.home') }}
+                @if($isHome)<span class="ml-2 text-xl">›</span>@endif
             </a>
 
-            <a href="{{ route('lang.switch', ['locale' => $locale==='fr' ? 'en' : 'fr']) }}"
+            <a href="{{ route('work') }}"
+            class="inline-flex items-center text-xs tracking-wide font-bold transition {{ $isWork ? $active : $inactive }}"
+            @if($isWork) aria-current="page" @endif>
+                {{ __('nav.work') }}
+                @if($isWork)<span class="ml-2 text-xl">›</span>@endif
+            </a>
+
+            <div class="ml-4 flex items-center gap-3 select-none">
+                <a href="{{ route('lang.switch', ['locale' => 'fr']) }}"
+                class="text-xs font-bold {{ $locale==='fr' ? 'text-black' : 'text-[#BDBDBD]' }}">
+                    {{ __('nav.fr') }}
+                </a>
+
+                <a href="{{ route('lang.switch', ['locale' => $locale==='fr' ? 'en' : 'fr']) }}"
                 role="switch"
                 aria-checked="{{ $locale==='en' ? 'true' : 'false' }}"
                 aria-label="{{ __('nav.open_menu') }}"
                 class="relative inline-flex h-7 w-12 items-center rounded-full border border-[#CFCFCF] bg-white hover:border-[#BDBDBD] transition">
-                <span class="pointer-events-none absolute top-1/2 -translate-y-1/2 rounded-full bg-[#BDBDBD]
-                            h-[18px] w-[18px] transition-all duration-200
-                            {{ $locale==='fr' ? 'left-1.5' : 'right-1.5' }}">
-                </span>
-            </a>
+                    <span class="pointer-events-none absolute top-1/2 -translate-y-1/2 rounded-full bg-[#BDBDBD]
+                        h-[18px] w-[18px] transition-all duration-200
+                        {{ $locale==='fr' ? 'left-1.5' : 'right-1.5' }}">
+                    </span>
+                </a>
 
-            <a href="{{ route('lang.switch', ['locale' => 'en']) }}"
+                <a href="{{ route('lang.switch', ['locale' => 'en']) }}"
                 class="text-xs font-bold {{ $locale==='en' ? 'text-black' : 'text-[#BDBDBD]' }}">
-                {{ __('nav.en') }}
-            </a>
+                    {{ __('nav.en') }}
+                </a>
             </div>
-
         </nav>
+
 
         <button id="menuToggle" class="md:hidden h-12 w-12 inline-flex items-center justify-center text-2xl" aria-label="{{ __('nav.open_menu') }}" aria-controls="mobileMenu" aria-expanded="false">≡</button>
     </div>

@@ -1,9 +1,23 @@
 <section class="section section-white bleed">
     <div class="container-page grid gap-8 lg:grid-cols-2 lg:items-stretch">
-        <div class="order-1 lg:order-2 lg:h-full">
+        <div class="order-1 lg:order-2 lg:h-full relative overflow-hidden">
             <img src="{{ asset('photo.png') }}" alt=""
-                     class="w-full aspect-square lg:aspect-auto lg:h-full object-cover rounded-2xl">
+             class="w-full aspect-square lg:aspect-auto lg:h-full object-cover rounded-2xl rise-on-load">
         </div>
+
+        <style>
+            @keyframes riseUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to   { transform: translateY(0); opacity: 1; }
+            }
+            .rise-on-load {
+            animation: riseUp 900ms cubic-bezier(.22,.61,.36,1) .2s forwards;
+            will-change: transform, opacity;
+            }
+            @media (prefers-reduced-motion: reduce) {
+            .rise-on-load { animation: none; transform: none; opacity: 1; }
+            }
+        </style>
 
         <div class="order-2 lg:order-1 flex flex-col lg:pt-16 xl:pt-24">
             <h1 class="font-ivy font-semibold text-[36px] lg:text-[56px] leading-[1.05] tracking-[-0.01em]">
